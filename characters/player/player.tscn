@@ -1,0 +1,47 @@
+[gd_scene load_steps=10 format=3 uid="uid://c5tt7rrd4ovvd"]
+
+[ext_resource type="SpriteFrames" uid="uid://bcj6et5uhs2d8" path="res://characters/player/player_sprite_frames.tres" id="1_8kmk2"]
+[ext_resource type="Script" path="res://characters/player/player.gd" id="1_dn080"]
+[ext_resource type="Resource" uid="uid://bcqh23kd5eadv" path="res://characters/player/player_input_actions.tres" id="2_kgvma"]
+[ext_resource type="Script" path="res://characters/facing.gd" id="3_x11j3"]
+[ext_resource type="Script" path="res://characters/player/player_input.gd" id="5_rpysv"]
+[ext_resource type="Script" path="res://characters/shooter.gd" id="6_k7ieq"]
+[ext_resource type="Resource" uid="uid://c4o7rqt3dhfmo" path="res://weapons/projectiles/fireable_basic.tres" id="7_n2lev"]
+[ext_resource type="Resource" uid="uid://ckiu4ifnlxns6" path="res://data/group_names.tres" id="8_v6fne"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gn2yv"]
+size = Vector2(12, 11)
+
+[node name="Player" type="CharacterBody2D"]
+texture_filter = 1
+safe_margin = 0.001
+script = ExtResource("1_dn080")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -5.5)
+shape = SubResource("RectangleShape2D_gn2yv")
+
+[node name="Facing" type="Node2D" parent="." node_paths=PackedStringArray("character")]
+texture_filter = 1
+position = Vector2(0, -8)
+script = ExtResource("3_x11j3")
+character = NodePath("..")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Facing"]
+texture_filter = 1
+sprite_frames = ExtResource("1_8kmk2")
+animation = &"run"
+
+[node name="PlayerInput" type="Node" parent="." node_paths=PackedStringArray("player", "shooter")]
+script = ExtResource("5_rpysv")
+player = NodePath("..")
+actions = ExtResource("2_kgvma")
+shooter = NodePath("../Shooter")
+
+[node name="Shooter" type="Node2D" parent="."]
+texture_filter = 1
+position = Vector2(10, -5)
+script = ExtResource("6_k7ieq")
+fireable = ExtResource("7_n2lev")
+group_names = ExtResource("8_v6fne")

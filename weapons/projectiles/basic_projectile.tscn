@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://b07qxhctiincb"]
+
+[ext_resource type="Script" path="res://weapons/projectiles/projectile.gd" id="1_emp6n"]
+[ext_resource type="Texture2D" uid="uid://bb3jmhdr06vbc" path="res://art/monochrome_tilemap_transparent.png" id="1_im8dj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_io5sm"]
+atlas = ExtResource("1_im8dj")
+region = Rect2(0, 17, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7w812"]
+atlas = ExtResource("1_im8dj")
+region = Rect2(17, 17, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2pafi"]
+atlas = ExtResource("1_im8dj")
+region = Rect2(34, 17, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0vmo0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_io5sm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7w812")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2pafi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8iub3"]
+radius = 3.0
+
+[node name="Basic Projectile" type="RigidBody2D"]
+texture_filter = 1
+gravity_scale = 0.01
+script = ExtResource("1_emp6n")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_0vmo0")
+frame_progress = 0.348376
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_8iub3")

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Fireable" load_steps=5 format=3 uid="uid://c4o7rqt3dhfmo"]
+
+[ext_resource type="Texture2D" uid="uid://bb3jmhdr06vbc" path="res://art/monochrome_tilemap_transparent.png" id="1_sldk8"]
+[ext_resource type="PackedScene" uid="uid://b07qxhctiincb" path="res://weapons/projectiles/basic_projectile.tscn" id="2_he6a5"]
+[ext_resource type="Script" path="res://weapons/projectiles/fireable.gd" id="3_ldpws"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_358xy"]
+atlas = ExtResource("1_sldk8")
+region = Rect2(5, 22, 6, 6)
+
+[resource]
+script = ExtResource("3_ldpws")
+display_name = &"Basic"
+icon = SubResource("AtlasTexture_358xy")
+scene = ExtResource("2_he6a5")
