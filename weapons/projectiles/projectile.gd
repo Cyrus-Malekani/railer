@@ -7,3 +7,6 @@ extends RigidBody2D
 
 func _ready() -> void:
 	linear_velocity.x = initial_velocity
+	
+func launch(p_move_direction : Vector2):
+	linear_velocity = initial_velocity * p_move_direction	
